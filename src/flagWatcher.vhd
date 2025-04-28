@@ -48,4 +48,4 @@ begin
         end if;
     end process;
 
-end Behavioral;
+end architecture Behavioral;
