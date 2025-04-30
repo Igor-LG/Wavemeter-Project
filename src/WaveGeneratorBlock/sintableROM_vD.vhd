@@ -11,14 +11,14 @@ use IEEE.STD_LOGIC_TEXTIO.ALL;
 entity sintableROM_vD is
     generic(
         DATA_WIDTH  : integer := 14;  -- Width of data --> output word
-        ADDR_WIDTH  : integer := 5   -- Width of address --> table size = 2^ADDR_WIDTH
+        ADDRESS_WIDTH  : integer := 5   -- Width of address --> table size = 2^ADDRESS_WIDTH
     );
     port(
 		clk		    : in std_logic;
 		reset   	: in std_logic;
 
-        i_addr_a    : in  std_logic_vector(ADDR_WIDTH-1 downto 0);
-        i_addr_b    : in  std_logic_vector(ADDR_WIDTH-1 downto 0);
+        i_addr_a    : in  std_logic_vector(ADDRESS_WIDTH-1 downto 0);
+        i_addr_b    : in  std_logic_vector(ADDRESS_WIDTH-1 downto 0);
 
         o_data_a    : out std_logic_vector(DATA_WIDTH-1 downto 0);
         o_data_b    : out std_logic_vector(DATA_WIDTH-1 downto 0)
@@ -29,7 +29,7 @@ architecture Behavioral of sintableROM_vD is
 	
 	-- >>>>> TYPES DECLARED <<<<<
     -- For the LUT
-    type rom_type is array (0 to (2**ADDR_WIDTH)-1) of std_logic_vector(DATA_WIDTH-1 downto 0);
+    type rom_type is array (0 to (2**ADDRESS_WIDTH)-1) of std_logic_vector(DATA_WIDTH-1 downto 0);
 	
 
 	-- >>>>> FUNCTIONS <<<<<
@@ -40,7 +40,7 @@ architecture Behavioral of sintableROM_vD is
 		variable rom_content : rom_type;
 	begin
 	
-		for i in 0 to 2**ADDR_WIDTH - 1 loop
+		for i in 0 to 2**ADDRESS_WIDTH - 1 loop
 			readline(text_file, text_line);
 			hread(text_line, rom_content(i));
 		end loop;
@@ -59,7 +59,7 @@ architecture Behavioral of sintableROM_vD is
 		variable hex_val		: std_logic_vector(3 downto 0);
 	begin
 	
-		for i in 0 to 2**ADDR_WIDTH - 1 loop
+		for i in 0 to 2**ADDRESS_WIDTH - 1 loop
 			readline(text_file, text_line);
 	
 			offset := 0;

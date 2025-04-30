@@ -10,7 +10,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity flagWatcher is
     generic (
-        ADDRESS_WIDTH : integer := 8  -- Width of the wide input
+        ADDRESS_WIDTH : integer := 5  -- Width of the wide input
     );
     port (
         clk         : in  std_logic;               -- Clock signal
@@ -39,7 +39,7 @@ begin
                 o_new_val <= i_Tc;
 
                 -- Check if the wide input is all '1's and set the trigger signal accordingly
-                if i_address = (others => '1') then
+                if i_address = std_logic_vector(to_unsigned(2**ADDRESS_WIDTH - 1, ADDRESS_WIDTH)) then
                     o_addr_end <= '1';  -- Fixed the variable name here
                 else
                     o_addr_end <= '0';

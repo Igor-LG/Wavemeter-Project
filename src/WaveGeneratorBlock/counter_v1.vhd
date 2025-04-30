@@ -14,10 +14,10 @@ entity counter_v1 is
         N_cycles : integer := 8  -- Example generic parameter
     );
     port (
-        clk         : in  STD_LOGIC;  -- Clock input
-        reset       : in  STD_LOGIC;  -- Reset input
+        clk     : in  STD_LOGIC;  -- Clock input
+        reset   : in  STD_LOGIC;  -- Reset input
 
-        o_Tc    : out STD_LOGIC;  -- Counter output
+        o_Tc    : out STD_LOGIC  -- Counter output
     );
 end entity counter_v1;
 

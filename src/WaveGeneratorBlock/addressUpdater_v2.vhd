@@ -8,21 +8,21 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity addressUpdater_v2 is
     generic (
-        OUTPUT_WIDTH : integer := 14  -- Generic parameter for output width
+        ADDRESS_WIDTH : integer := 14  -- Generic parameter for output width
     );
     port (
         clk             : in  std_logic; -- Clock input
         reset           : in  std_logic; -- reset input
         enable_update   : in  std_logic; -- 1-bit input port
 
-        o_address       : out std_logic_vector(OUTPUT_WIDTH-1 downto 0)  -- Output address with width defined by generic
+        o_address       : out std_logic_vector(ADDRESS_WIDTH-1 downto 0)  -- Output address with width defined by generic
     );
 end addressUpdater_v2;
 
 architecture Behavioral of addressUpdater_v2 is
         
-        signal address_reg : UNSIGNED(OUTPUT_WIDTH-1 downto 0) := (others => '0'); -- Internal register
-        constant max_address : UNSIGNED(OUTPUT_WIDTH-1 downto 0) := (others => '1'); -- Maximum address value
+        signal address_reg      : UNSIGNED(ADDRESS_WIDTH-1 downto 0) := (others => '0'); -- Internal register
+        constant max_address    : UNSIGNED(ADDRESS_WIDTH-1 downto 0) := (others => '1'); -- Maximum address value
 begin
 
     -- Assign the internal register to the output using a process to ensure synchronous behavior

@@ -10,14 +10,14 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity addressUpdater_v1 is
     generic (
-        ADDRESS_WIDTH : integer := 14  -- Generic parameter for address width
+        ADDRESS_WIDTH : integer := 5  -- Generic parameter for address width
     );
     port (
-        clk             : in  std_logic;    -- Clock input
-        reset           : in  std_logic;    -- Synchronous reset input
-        enable_update   : in  std_logic;    -- Enable signal for address update
+        clk               : in  std_logic;    -- Clock input
+        reset             : in  std_logic;    -- Synchronous reset input
+        i_enable_update   : in  std_logic;    -- Enable signal for address update
         
-        o_address       : out std_logic_vector(ADDRESS_WIDTH-1 downto 0)  -- Output address with width defined by generic
+        o_address         : out std_logic_vector(ADDRESS_WIDTH-1 downto 0)  -- Output address with width defined by generic
     );
 end addressUpdater_v1;
 
@@ -38,7 +38,7 @@ begin
             if reset = '1' then
                 address_reg <= (others => '0');  -- Reset output to all zeros
             else
-                if enable_update = '1' then  -- Check if update is enabled
+                if i_enable_update = '1' then  -- Check if update is enabled
                     if address_reg = max_address then
                         address_reg <= (others => '0');  -- Reset output to all zeros when max address is reached
                     else

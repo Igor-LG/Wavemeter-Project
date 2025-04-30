@@ -9,14 +9,14 @@ use IEEE.NUMERIC_STD.ALL;
 entity sintableROM_vB is
     generic (
         DATA_WIDTH  : integer := 14;  -- Width of data --> output word
-        ADDR_WIDTH  : integer := 5   -- Width of address --> table size = 2^ADDR_WIDTH
+        ADDRESS_WIDTH  : integer := 5   -- Width of address --> table size = 2^ADDRESS_WIDTH
     );
     port (
 		clk         : in std_logic;
 		reset       : in std_logic;
 
-        i_addr_a    : in  std_logic_vector(ADDR_WIDTH-1 downto 0);
-        i_addr_b    : in  std_logic_vector(ADDR_WIDTH-1 downto 0);
+        i_addr_a    : in  std_logic_vector(ADDRESS_WIDTH-1 downto 0);
+        i_addr_b    : in  std_logic_vector(ADDRESS_WIDTH-1 downto 0);
 
         o_data_a    : out std_logic_vector(DATA_WIDTH-1 downto 0);
         o_data_b    : out std_logic_vector(DATA_WIDTH-1 downto 0)
@@ -27,7 +27,7 @@ architecture Behavioral of sintableROM_vB is
 	
 	-- >>>>> TYPES DECLARED <<<<<
     -- Declare the ROM memory type
-    type rom_type is array (0 to (2**ADDR_WIDTH)-1) of std_logic_vector(DATA_WIDTH-1 downto 0);
+    type rom_type is array (0 to (2**ADDRESS_WIDTH)-1) of std_logic_vector(DATA_WIDTH-1 downto 0);
 	
 	-- >>>>> SIGNALS <<<<<
     -- Output registers
