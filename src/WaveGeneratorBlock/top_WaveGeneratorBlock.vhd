@@ -25,8 +25,9 @@ entity top_WaveGeneratorBlock is
 		o_TC_w1		: out std_logic; -- trigger signal activated on every new value of the LUT for W1
         o_TC_w2		: out std_logic; -- trigger signal activated on every new value of the LUT for W2
 
-		-- Differential clock for D/A
-		o_clk_diff  : out std_logic
+		-- Differential clocks for D/A
+        o_clk_diff_A  : out std_logic;
+		o_clk_diff_B  : out std_logic
     );
 end entity top_WaveGeneratorBlock;
 
@@ -40,8 +41,9 @@ architecture Behavioral of top_WaveGeneratorBlock is
 
 begin
 
-	-- Creating the differential clock
-	o_clk_diff <= clk; 
+	-- Creating the differential clocks
+	o_clk_diff_A <= clk; 
+	o_clk_diff_B <= clk; 
 
     -- Counter, address updater and flag watcher for W1
     COUNTER_W1 : entity work.counter_v1(Behavioral)
@@ -116,7 +118,7 @@ begin
 
     
     -- ROM instantiations for W1 and W2
-    SINTABLE : entity work.sintableROM_vC(Behavioral)
+    SINTABLE : entity work.sintableROM_vB(Behavioral)
         generic map(
             DATA_WIDTH      => DATA_WIDTH,
             ADDRESS_WIDTH   => ADDRESS_WIDTH
